@@ -1,0 +1,41 @@
+{% extends 'base.html' %}
+
+{% block title %} Создание заметки {% endblock %}
+
+
+{% block body %}
+<div class="container" style="margin-top: 15px">
+    <form method="post">
+        <row>
+            <div class="col">
+                <span><h3>Название:</h3></span>
+                <input type="text" class="form-control" name="title" id="title" placeholder="Введите название">
+            </div>
+                <br>
+            <div class="col">
+                <span><h3>Комментарий:</h3></span>
+                <input type="text" class="form-control" name="comment" id="comment"  placeholder="Введите комментарий">
+            </div>
+                <br>
+            <div class="col">
+                <span><h3>Дата:</h3></span>
+                <input type="date" class="form-control" name="date" id="date" placeholder="Введите дату события">
+            </div>
+                <br>
+            <div class="col">
+                <span><h3>Приоритет:</h3></span>
+                <select class="form-select" aria-label="priory" name="priory" id="priory">
+                    <option selected>Установите приоритет</option>
+                    <option value="danger">Важный</option>
+                    <option value="primary">Средний</option>
+                    <option value="secondary">Незначительный</option>
+                </select>
+            </div>
+                <br>
+            <div class="col">
+                <input type="submit" class="btn btn-outline-success" value="Создать заметку">
+            </div>
+        </row>
+    </form>
+</div>
+{% endblock %}

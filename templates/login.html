@@ -1,0 +1,114 @@
+<!doctype html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport"
+          content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/main.css') }}">
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@5.1.1/dist/css/bootstrap.min.css">
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.3.0/font/bootstrap-icons.css"/>
+    <title>Добро пожаловать</title>
+</head>
+
+<body class="bg-dark text-white d-flex h-100 container">
+
+<svg xmlns="http://www.w3.org/2000/svg" style="display: none;">
+    <symbol id="check" viewBox="0 0 16 16">
+        <title>Check</title>
+        <path d="M13.854 3.646a.5.5 0 0 1 0 .708l-7 7a.5.5 0 0 1-.708 0l-3.5-3.5a.5.5 0 1 1 .708-.708L6.5 10.293l6.646-6.647a.5.5 0 0 1 .708 0z"></path>
+    </symbol>
+</svg>
+
+<div class="container d-flex w-75 h-75 p-3 mx-auto flex-column">
+    <header class="mb-auto">
+        <div class="d-flex flex-column flex-md-row justify-content-center align-items-center pb-3 mb-4 border-bottom ">
+                <svg xmlns="http://www.w3.org/2000/svg" width="40" height="40" fill="currentColor" class="bi bi-calendar-check" viewBox="0 0 16 16">
+                    <path d="M10.854 7.146a.5.5 0 0 1 0 .708l-3 3a.5.5 0 0 1-.708 0l-1.5-1.5a.5.5 0 1 1 .708-.708L7.5 9.793l2.646-2.647a.5.5 0 0 1 .708 0z"/>
+                    <path d="M3.5 0a.5.5 0 0 1 .5.5V1h8V.5a.5.5 0 0 1 1 0V1h1a2 2 0 0 1 2 2v11a2 2 0 0 1-2 2H2a2 2 0 0 1-2-2V3a2 2 0 0 1 2-2h1V.5a.5.5 0 0 1 .5-.5zM1 4v10a1 1 0 0 0 1 1h12a1 1 0 0 0 1-1V4H1z"/>
+                </svg>
+                <span class="fs-1">&nbspTimeDis</span>
+        </div>
+    </header>
+
+    <main>
+        <div class="container w-50">
+            <h3>
+                {% with messages = get_flashed_messages(with_categories=true) %}
+                {% if messages %}
+                <ul class=flashes>
+                    {% for category, message in messages %}
+                    <li class="error1">{{ message }}</li>
+                    {% endfor %}
+                </ul>
+                {% endif %}
+                {% endwith %}
+            </h3>
+            <form method="post">
+                <div class="form-group">
+                    <span class="fs-4">Логин:</span>
+                    <input type="text" class="form-control" id="login" name="login" placeholder="Введите логин" aria-describedby="log">
+                </div>
+                <br>
+                <div class="form-group">
+                    <span class="fs-4">Пароль:</span>
+                    <input type="password" class="form-control" id="pass" name="pass" placeholder="Введите пароль">
+                </div>
+                <br>
+                <div class="d-grid gap-2 col-6 mx-auto ">
+                    <input type="submit" class="btn btn-outline-success btn-lg" name="btn" value="Войти">
+                </div>
+            </form>
+        </div>
+        <br>
+
+        <nav class="border-top navbar navbar-dark bg-dark">
+            <div class="container-fluid text-center navbar-nav w-100 justify-content-center" style="margin-top: 25px">
+                <button class="navbar-toggler btn-lg btn-rounded" type="button" data-bs-toggle="collapse" data-bs-target="#registr" aria-controls="registr" aria-expanded="false" aria-label="Toggle navigation">
+                    <i class="bi bi-person-plus-fill"></i> Регистрация
+                </button>
+            </div>
+        </nav>
+
+        <div class="collapse container w-50" id="registr">
+            <form method="post" class="mt-4">
+                <div class="form-group">
+                    <span class="fs-4">Логин:</span>
+                    <input type="text" class="form-control" id="new_login" name="new_login" placeholder="Придумайте логин">
+                </div>
+                <br>
+                <div class="form-group">
+                    <span class="fs-4">Email:</span>
+                    <input type="email" class="form-control" id="mail" name="mail" placeholder="Введите ваш адрес электронной почты">
+                </div>
+                <br>
+                <div class="form-group">
+                    <span class="fs-4">Пароль:</span>
+                    <input type="password" class="form-control" id="new_pass" name="new_pass" placeholder="Придумайте пароль">
+                </div>
+                <br>
+                <div class="form-group">
+                    <span class="fs-4">Подтвердите пароль:</span>
+                    <input type="password" class="form-control" id="new_pass2" name="new_pass2" placeholder="Введите пароль ещё раз">
+                </div>
+                <br>
+                <div class="d-grid gap-2 col-6 mx-auto justify-content-center">
+                    <input type="submit" class="btn btn-outline-success btn-lg" name="btn" value="Зарегистрироваться">
+                </div>
+            </form>
+        </div>
+    </main>
+
+    <footer class="pt-4  pt-md-5 border-top" style="margin-top: 20px">
+        <div class="row">
+            <div class="col-12 col-md">
+                <small class="d-block mb-3 text-muted"><a type="button" href="game" class="text-muted text-decoration-none">© Novikov Andrey 91-PIz</a></small>
+            </div>
+        </div>
+    </footer>
+</div>
+
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.0-beta3/dist/js/bootstrap.bundle.min.js" integrity="sha384-JEW9xMcG8R+pH31jmWH6WWP0WintQrMb4s7ZOdauHnUtxwoG2vI5DkLtS3qm9Ekf" crossorigin="anonymous"></script>
+
+</body>
+</html>

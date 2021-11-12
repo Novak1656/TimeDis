@@ -1,0 +1,31 @@
+{% extends 'base.html' %}
+
+{% block title %} Редактирование {% endblock %}
+
+{% block body %}
+<div class="container" style="margin-top: 15px">
+    <div class="text-center"> <h1>Редактирование заметки</h1> </div>
+    <br>
+    {% for elm in for_update %}
+        <form method="post" class="border-top">
+            <br>
+            <span><h3>Название:</h3></span>
+            <input type="text" name="title" class="form-control p" value="{{ elm.title }}">
+            <span><h3>Комментарий:</h3></span>
+            <input type="text" name="comment" class="form-control" value="{{ elm.comment }}">
+            <span><h3>Дата:</h3></span>
+            <input type="date" name="date" class="form-control" value="{{ elm.date }}">
+            <span><h3>Приоритет:</h3></span>
+                <select class="form-select" aria-label="priory" name="priory" id="priory">
+                    <option selected>{{ elm.priory }}</option>
+                    <option value="danger">Важный</option>
+                    <option value="primary">Средний</option>
+                    <option value="secondary">Незначительный</option>
+                </select>
+            <div class="text-center" style="margin-top: 25px">
+                <input type="submit" class="btn btn-lg btn-outline-success" value="Сохранить изменения">
+            </div>
+        </form>
+    {% endfor %}
+</div>
+{% endblock %}

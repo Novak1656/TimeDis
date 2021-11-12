@@ -1,0 +1,49 @@
+{% extends 'base.html' %}
+
+{% block title %} Ваши заметки {% endblock %}
+
+
+{% block body %}
+<div class="container">
+    <nav class="navbar navbar-dark bg-dark">
+        <div class="container-fluid">
+            <h1>Ваши заметки:</h1>
+            <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#search" aria-controls="search" aria-expanded="false" aria-label="Toggle navigation">
+                <i class="bi bi-chevron-down"></i>
+            </button>
+        </div>
+    </nav>
+    <div class="collapse" id="search">
+        <form class="d-flex" method="post">
+            <input class="form-control mr-2" list="search_name" name="search_title" placeholder="Поиск...">&nbsp
+            <datalist id="search_name">
+                {% for i in remind %}
+                    <option value="{{ i.title }}">
+                {% endfor %}
+            </datalist>
+            <button class="btn btn-floating btn-outline-success mr-1" name="search" type="submit" value="Поиск"><i class="bi bi-search"></i></button>
+        </form>
+        <br>
+    </div>
+
+    {% if remind|length > 0 %}
+        {% for elm in remind %}
+            <div class="alert alert-{{ elm.priory }} border">
+                <h2>{{ elm.title }}</h2>
+                <p>{{ elm.comment }}</p>
+                <p><b>Дата события: {{ elm.date }}</b></p>
+
+                <form method="post">
+                    <div class="btn-group" role="group" aria-label="btn_group">
+                        <a class="btn btn-outline-info" name="id_update" href="/update/{{elm.id}}">Изменить</a>
+                        <button type="submit" class="btn btn-outline-danger" name="id_delete" value="{{elm.id}}">Удалить</button>
+                    </div>
+                </form>
+            </div>
+        {% endfor %}
+    {% else %}
+    <p>У вас нет заметок</p>
+    <a class="btn btn-success" href="/add/">Создать заметку</a>
+    {% endif %}
+</div>
+{% endblock %}
